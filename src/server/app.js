@@ -34,7 +34,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/seller', sellerRoutes);
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5214;
 const io = socketIO(server, {
     cors: {
         origin: 'http://localhost:3000',
