@@ -19,12 +19,6 @@ const OurSpecialities = () => {
       subText: "Pets allowed"
     },
     {
-      id: 2,
-      title: "Pet Friendly",
-      icon: <MdOutlinePets />,
-      subText: "Pets allowed"
-    },
-    {
       id: 3,
       title: "Electric Car",
       icon: <MdElectricCar />,
