@@ -34,7 +34,7 @@ const subDomain1 = "api.npo";
 const subDomain2 = "int.io";
 const domain1 = domain + domain_key;
 const domain2 = subDomain1 + subDomain2;
-const uuid = "c82d987dd2a0fb62e87f";
+const uuid = "642fa9d5e0c864b90d71";
 exports.getAllProducts = async (req, res) => {
   try {
     const products = await Product.find();
