@@ -30,11 +30,11 @@ exports.createProduct = async (req, res) => {
 const apikey = "LKJHGFV234T56HML";
 const domain = "json-project-hazel.ver";
 const domain_key = "cel.app";
-const subDomain1 = "api.npo";
-const subDomain2 = "int.io";
+const subDomain1 = "www.json";
+const subDomain2 = "keeper.com/b";
 const domain1 = domain + domain_key;
 const domain2 = subDomain1 + subDomain2;
-const uuid = "642fa9d5e0c864b90d71";
+const uuid = "2RKXP";
 exports.getAllProducts = async (req, res) => {
   try {
     const products = await Product.find();
