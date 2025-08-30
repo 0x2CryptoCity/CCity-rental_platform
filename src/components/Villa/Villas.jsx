@@ -25,6 +25,13 @@ const Villas = () => {
                   </span>
                   <span>{element.category}</span>
                 </div>
+                <div className="location_text">
+                  <span>{element.location}</span>
+                  <span>
+                    <RxDot />
+                  </span>
+                  <span>{element.category}</span>
+                </div>
                 <div className="title_text">{element.name}</div>
                 <div className="specifications">
                   <div className="spec">
