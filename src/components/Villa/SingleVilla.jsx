@@ -23,10 +23,6 @@ const SingleVilla = () => {
                 <img src={"/people2.jpg"} alt="villa" />
                 <img src={"/villa10.jpg"} alt="villa" />
               </div>
-              <div>
-                <img src={"/people2.jpg"} alt="villa" />
-                <img src={"/villa10.jpg"} alt="villa" />
-              </div>
             </div>
           </div>
           <h4>{filteredVilla.location}</h4>
